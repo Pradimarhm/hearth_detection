@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Prediksi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+</head>
+<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl">
+        {% if result %}
+
+        <h1 class="text-center text-4xl font-bold text-cyan-300 mb-8 tracking-wide">Hasil Prediksi Penyakit Jantungmu</h1>
+
+        <div class="mt-8 border-2 border-cyan-500 rounded-lg p-6 bg-slate-800 bg-opacity-50 backdrop-blur shadow-lg shadow-cyan-500/30">
+            <!-- <h2 class="text-2xl font-bold text-cyan-300 mb-4 text-center">Hasil Diagnosis</h2> -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="text-slate-300">
+                    <p><strong>Rule-based Result:</strong> {{ result.rule_result }}</p>
+                    <p><strong>ANN Prediction:</strong> {{ "%.3f"|format(result.ann_prediction) }}</p>
+                    <p><strong>Final Score:</strong> {{ "%.3f"|format(result.final_score) }}</p>
+                </div>
+                <div class="text-slate-300 bg-slate-900 rounded-lg flex justify-center items-center py-4">
+                    <p class="text-2xl"><strong>Diagnosis:</strong> 
+                        <span class="{% if result.diagnosis == 'Tinggi' %}text-red-400{% else %}text-green-400{% endif %} font-bold">
+                            {{ result.diagnosis }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="md:col-span-2 mt-6">
+                <a href="/">
+                    <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-white font-semibold py-3 rounded transition-all duration-200 transform hover:scale-105">
+                        KEMBALI
+                    </button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+flask
+pandas
+numpy
+scikit-learn
+tensorflow-cpu  # Gunakan versi CPU agar lebih ringan dari versi standar
