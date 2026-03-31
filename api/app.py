@@ -1,7 +1,14 @@
 from flask import Flask, request, render_template
 from api.hybrid_prediction import hybrid_predict
+import os
 
-app = Flask(__name__)
+# app = Flask(__name__)
+# Mendapatkan path folder 'api' secara dinamis
+base_dir = os.path.dirname(os.path.abspath(__file__))
+template_dir = os.path.join(base_dir, 'templates')
+
+# Beritahu Flask lokasi folder templates
+app = Flask(__name__, template_folder=template_dir)
 
 @app.route('/')
 def index():

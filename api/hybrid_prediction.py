@@ -5,13 +5,18 @@
 import pandas as pd
 import joblib
 from tensorflow.keras.models import load_model
+import os
+
 
 from flask import Flask, render_template 
 
+# Tambahkan ini untuk mendeteksi lokasi folder 'api' secara otomatis
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Load model & scaler
-model = load_model("best_model.keras")
-scaler = joblib.load("scaler.pkl")
-feature_names = joblib.load("feature_names.pkl")
+model = load_model(os.path.join(BASE_DIR, "best_model.keras"))
+scaler = joblib.load(os.path.join(BASE_DIR, "scaler.pkl"))
+feature_names = joblib.load(os.path.join(BASE_DIR, "feature_names.pkl"))
 
 
 
